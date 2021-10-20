@@ -20,9 +20,17 @@ public class PokemonListService {
     public List<PokemonItem> getPokemonList(){
 
        final List<PokemonItem> pokemons = new ArrayList<>();
-       PokemonListResults pokemonListResults = pokemonListNetworkRepository.fetchPokemonList();
+       int offset =0;
+       int limit = 100;
+       PokemonListResults pokemonListResults;
 
-       pokemons.addAll(pokemonListResults.getResults());
+       do{
+           pokemonListResults= pokemonListNetworkRepository.fetchPokemonList(offset,limit);
+           pokemons.addAll(pokemonListResults.getResults());
+           offset+=limit;
+
+       }while (pokemonListResults.getNext()!=null);
+
 
        return pokemons;
     }

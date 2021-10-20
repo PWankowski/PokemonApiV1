@@ -6,9 +6,11 @@ import org.springframework.web.client.RestTemplate;
 @Repository
 public class PokemonListNetworkRepository {
 
-    public PokemonListResults fetchPokemonList(){
+    private final String URL_FORMAT = "https://pokeapi.co/api/v2/pokemon?offset=%d&limit=%d";
+
+    public PokemonListResults fetchPokemonList(int offset, int limit){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
+        String url = String.format(URL_FORMAT,offset,limit);
         return restTemplate.getForObject(url,PokemonListResults.class);
     }
 
