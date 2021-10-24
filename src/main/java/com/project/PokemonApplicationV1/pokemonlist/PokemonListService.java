@@ -30,7 +30,7 @@ public class PokemonListService {
 
 
 
-     List<Pokemon> getPokemonList(){
+   public  List<Pokemon> getPokemonList(){
 
         if(pokemonRepository.count()!=0){
           return   pokemonRepository.findAll();
