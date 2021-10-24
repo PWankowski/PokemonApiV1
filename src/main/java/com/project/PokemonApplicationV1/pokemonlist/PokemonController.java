@@ -9,17 +9,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pokemon")
-public class PokemonController {
+ class PokemonController {
 
     private final PokemonListService pokemonListService;
 
     @Autowired
-    public PokemonController(PokemonListService pokemonListService) {
+     PokemonController(PokemonListService pokemonListService) {
         this.pokemonListService = pokemonListService;
     }
 
     @GetMapping("/list")
-    public List<PokemonItem> getPokemonList(){
+     List<Pokemon> getPokemonList(){
 
       return   pokemonListService.getPokemonList();
     }
