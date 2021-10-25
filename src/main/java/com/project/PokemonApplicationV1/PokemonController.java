@@ -1,6 +1,7 @@
 package com.project.PokemonApplicationV1;
 
 import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
+import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsResponse;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
 import com.project.PokemonApplicationV1.pokemonlist.Pokemon;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListService;
@@ -34,7 +35,7 @@ import java.util.List;
     }
 
     @GetMapping("/{name}")
-    public Pokemon getPokemonDetails(@PathVariable String name){
+    public PokemonDetailsResponse getPokemonDetails(@PathVariable String name){
         return pokemonDetailsService.getPokemonDetails(name);
     }
 

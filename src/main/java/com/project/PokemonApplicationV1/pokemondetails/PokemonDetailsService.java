@@ -9,19 +9,21 @@ import org.springframework.stereotype.Service;
 public class PokemonDetailsService {
 
     private final PokemonRepository pokemonRepository;
+    private final PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository;
 
     @Autowired
-    public PokemonDetailsService(PokemonRepository pokemonRepository) {
+    public PokemonDetailsService(PokemonRepository pokemonRepository,
+                                 PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository) {
         this.pokemonRepository = pokemonRepository;
+        this.pokemonDetailsNetworkRepository = pokemonDetailsNetworkRepository;
     }
 
+    public PokemonDetailsResponse getPokemonDetails(String pokemonName){
 
-    public Pokemon getPokemonDetails(String pokemonName){
+       Pokemon pokemon = pokemonRepository.findByName(pokemonName)
+               .orElseThrow( () -> new NoPokemonFoundException(pokemonName));
 
-       Pokemon pokemon = pokemonRepository.findByName(pokemonName).orElseThrow( () ->{
-           return new NoPokemonFoundException(pokemonName);
-       });
-        return pokemon;
+       return pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId());
     }
 
 
