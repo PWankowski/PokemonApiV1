@@ -10,20 +10,25 @@ public class PokemonDetailsService {
 
     private final PokemonRepository pokemonRepository;
     private final PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository;
+    private final PokemonDetailsDto pokemonDetailsDto;
 
     @Autowired
     public PokemonDetailsService(PokemonRepository pokemonRepository,
-                                 PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository) {
+                                 PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository,
+                                 PokemonDetailsDto pokemonDetailsDto) {
         this.pokemonRepository = pokemonRepository;
         this.pokemonDetailsNetworkRepository = pokemonDetailsNetworkRepository;
+        this.pokemonDetailsDto = pokemonDetailsDto;
     }
 
-    public PokemonDetailsResponse getPokemonDetails(String pokemonName){
+    public PokemonDetails getPokemonDetails(String pokemonName){
 
        Pokemon pokemon = pokemonRepository.findByName(pokemonName)
                .orElseThrow( () -> new NoPokemonFoundException(pokemonName));
 
-       return pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId());
+       return pokemonDetailsDto.toEntity(pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId()));
+
+
     }
 
 

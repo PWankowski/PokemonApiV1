@@ -1,6 +1,7 @@
 package com.project.PokemonApplicationV1;
 
 import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
+import com.project.PokemonApplicationV1.pokemondetails.PokemonDetails;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsResponse;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
 import com.project.PokemonApplicationV1.pokemonlist.Pokemon;
@@ -35,13 +36,13 @@ import java.util.List;
     }
 
     @GetMapping("/{name}")
-    public PokemonDetailsResponse getPokemonDetails(@PathVariable String name){
+    public PokemonDetails getPokemonDetails(@PathVariable String name){
         return pokemonDetailsService.getPokemonDetails(name);
     }
 
     @ExceptionHandler(value = NoPokemonFoundException.class)
     public ResponseEntity<ErrorMessage> handleNoPokemonFoundException(NoPokemonFoundException exception){
-        return new ResponseEntity<ErrorMessage>(new ErrorMessage(exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorMessage(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
 
