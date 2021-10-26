@@ -1,11 +1,6 @@
 package com.project.PokemonApplicationV1.pokemonlist;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-
 public class PokemonItem {
-
 
 
     private String name;
@@ -13,7 +8,6 @@ public class PokemonItem {
 
     public PokemonItem() {
     }
-
 
 
     public String getName() {

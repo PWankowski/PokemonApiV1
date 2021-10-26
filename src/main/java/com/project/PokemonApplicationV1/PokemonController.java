@@ -2,7 +2,6 @@ package com.project.PokemonApplicationV1;
 
 import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetails;
-import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsResponse;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
 import com.project.PokemonApplicationV1.pokemonlist.Pokemon;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListService;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pokemon")
- public class PokemonController {
+public class PokemonController {
 
     private final PokemonListService pokemonListService;
     private final PokemonDetailsService pokemonDetailsService;
@@ -27,26 +26,21 @@ import java.util.List;
     }
 
 
-
-
     @GetMapping("/list")
-    public  List<Pokemon> getPokemonList(){
+    public List<Pokemon> getPokemonList() {
 
-      return   pokemonListService.getPokemonList();
+        return pokemonListService.getPokemonList();
     }
 
     @GetMapping("/{name}")
-    public PokemonDetails getPokemonDetails(@PathVariable String name){
+    public PokemonDetails getPokemonDetails(@PathVariable String name) {
         return pokemonDetailsService.getPokemonDetails(name);
     }
 
     @ExceptionHandler(value = NoPokemonFoundException.class)
-    public ResponseEntity<ErrorMessage> handleNoPokemonFoundException(NoPokemonFoundException exception){
+    public ResponseEntity<ErrorMessage> handleNoPokemonFoundException(NoPokemonFoundException exception) {
         return new ResponseEntity<>(new ErrorMessage(exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
-
-
-
 
 
 }

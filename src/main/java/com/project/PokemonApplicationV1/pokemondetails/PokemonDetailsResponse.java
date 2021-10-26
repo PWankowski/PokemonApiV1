@@ -62,69 +62,68 @@ public class PokemonDetailsResponse {
     }
 }
 
- class Abilities{
+class Abilities {
 
     private AbilityItem ability;
 
 
+    public AbilityItem getAbility() {
+        return ability;
+    }
 
-     public AbilityItem getAbility() {
-         return ability;
-     }
+    public void setAbility(AbilityItem ability) {
+        this.ability = ability;
+    }
+}
 
-     public void setAbility(AbilityItem ability) {
-         this.ability = ability;
-     }
- }
-
- class AbilityItem{
+class AbilityItem {
 
     private String name;
 
-     public String getName() {
-         return name;
-     }
+    public String getName() {
+        return name;
+    }
 
-     public void setName(String name) {
-         this.name = name;
-     }
- }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
 
- class Sprites{
+class Sprites {
     @JsonProperty("front_default")
     String img;
 
-     public String getImg() {
-         return img;
-     }
+    public String getImg() {
+        return img;
+    }
 
-     public void setImg(String img) {
-         this.img = img;
-     }
- }
+    public void setImg(String img) {
+        this.img = img;
+    }
+}
 
- class Types{
+class Types {
 
     private Type type;
 
-     public Type getType() {
-         return type;
-     }
+    public Type getType() {
+        return type;
+    }
 
-     public void setType(Type type) {
-         this.type = type;
-     }
- }
+    public void setType(Type type) {
+        this.type = type;
+    }
+}
 
- class Type{
+class Type {
 
     private String name;
 
-     public String getName() {
-         return name;
-     }
+    public String getName() {
+        return name;
+    }
 
-     public void setName(String name) {
-         this.name = name;
-     }
- }
+    public void setName(String name) {
+        this.name = name;
+    }
+}

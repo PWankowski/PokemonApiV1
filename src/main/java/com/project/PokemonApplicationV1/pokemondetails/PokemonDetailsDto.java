@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class PokemonDetailsDto {
 
 
-    public PokemonDetails toEntity(PokemonDetailsResponse pokemonDetailsResponse){
+    public PokemonDetails toEntity(PokemonDetailsResponse pokemonDetailsResponse) {
         PokemonDetails pokemonDetails = new PokemonDetails();
         pokemonDetails.setName(pokemonDetailsResponse.getName());
         pokemonDetails.setHeight(pokemonDetailsResponse.getHeight());
@@ -26,8 +26,6 @@ public class PokemonDetailsDto {
 
         return pokemonDetails;
     }
-
-
 
 
 }

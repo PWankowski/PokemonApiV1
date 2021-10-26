@@ -1,7 +1,5 @@
 package com.project.PokemonApplicationV1.pokemondetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.List;
 
 

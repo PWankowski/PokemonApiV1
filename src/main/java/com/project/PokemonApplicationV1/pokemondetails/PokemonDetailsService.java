@@ -21,16 +21,15 @@ public class PokemonDetailsService {
         this.pokemonDetailsDto = pokemonDetailsDto;
     }
 
-    public PokemonDetails getPokemonDetails(String pokemonName){
+    public PokemonDetails getPokemonDetails(String pokemonName) {
 
-       Pokemon pokemon = pokemonRepository.findByName(pokemonName)
-               .orElseThrow( () -> new NoPokemonFoundException(pokemonName));
+        Pokemon pokemon = pokemonRepository.findByName(pokemonName)
+                .orElseThrow(() -> new NoPokemonFoundException(pokemonName));
 
-       return pokemonDetailsDto.toEntity(pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId()));
+        return pokemonDetailsDto.toEntity(pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId()));
 
 
     }
-
 
 
 }
