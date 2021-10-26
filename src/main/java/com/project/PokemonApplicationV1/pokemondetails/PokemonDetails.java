@@ -1,5 +1,8 @@
 package com.project.PokemonApplicationV1.pokemondetails;
 
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 
@@ -13,8 +16,7 @@ public class PokemonDetails {
     private String imageUrl;
     private List<String> types;
 
-    public PokemonDetails() {
-    }
+
 
     public String getName() {
         return name;
