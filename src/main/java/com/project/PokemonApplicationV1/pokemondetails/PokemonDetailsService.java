@@ -16,26 +16,27 @@ public class PokemonDetailsService {
     private final PokemonRepository pokemonRepository;
     private final PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository;
     private final PokemonDetailsDto pokemonDetailsDto;
-
+    private final PokemonDetailsRepository pokemonDetailsRepository;
 
     @Autowired
     public PokemonDetailsService(PokemonRepository pokemonRepository,
                                  PokemonDetailsNetworkRepository pokemonDetailsNetworkRepository,
-                                 PokemonDetailsDto pokemonDetailsDto) {
+                                 PokemonDetailsDto pokemonDetailsDto,
+                                 PokemonDetailsRepository pokemonDetailsRepository) {
         this.pokemonRepository = pokemonRepository;
         this.pokemonDetailsNetworkRepository = pokemonDetailsNetworkRepository;
         this.pokemonDetailsDto = pokemonDetailsDto;
+        this.pokemonDetailsRepository = pokemonDetailsRepository;
     }
 
     public PokemonDetails getPokemonDetails(String pokemonName) {
-
-        Pokemon pokemon = pokemonRepository.findByName(pokemonName)
-                .orElseThrow(() -> new NoPokemonFoundException(pokemonName));
-
-        PokemonDetails pokemonDetails = pokemonDetailsDto.toEntity(pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId()));
-
-        return pokemonDetails;
-
+        return pokemonDetailsRepository.findById(pokemonName).orElseGet(() ->{
+            Pokemon pokemon = pokemonRepository.findByName(pokemonName)
+                    .orElseThrow(() -> new NoPokemonFoundException(pokemonName));
+            PokemonDetailsResponse pokemonDetailsResponse = pokemonDetailsNetworkRepository.fetchPokemonDetails(pokemon.getId());
+            PokemonDetails pokemonDetails = pokemonDetailsDto.toEntity(pokemonDetailsResponse);
+            return pokemonDetailsRepository.save(pokemonDetails);
+        });
     }
 
     public List<PokemonDetails> getPokemonDetailsList(String pokemonNameList){
