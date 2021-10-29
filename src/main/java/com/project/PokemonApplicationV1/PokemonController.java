@@ -28,8 +28,9 @@ public class PokemonController {
 
 
     @GetMapping("/list")
-    public List<PokemonListItem> getPokemonItemList() {
-        return pokemonListService.getPokemonListItems();
+    public List<PokemonListItem> getPokemonItemList(@RequestParam(defaultValue = "0") int offset,
+                                                    @RequestParam(defaultValue = "20") int limit) {
+        return pokemonListService.getPokemonListItems(offset,limit);
     }
 
 

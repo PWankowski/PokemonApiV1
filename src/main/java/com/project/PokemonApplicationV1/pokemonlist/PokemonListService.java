@@ -57,11 +57,9 @@ public class PokemonListService {
         return pokemons;
     }
 
-    public List<PokemonListItem> getPokemonListItems() {
+    public List<PokemonListItem> getPokemonListItems(int offset, int limit) {
 
         final List<PokemonListItem> pokemonListItems = new ArrayList<>();
-        int offset =0;
-        int limit =20;
 
         Pageable pageable = PageRequest.of(offset,limit);
 

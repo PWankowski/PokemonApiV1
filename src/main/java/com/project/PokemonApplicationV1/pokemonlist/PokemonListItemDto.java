@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
         PokemonListItem pokemonListItem = new PokemonListItem();
         pokemonListItem.setName(pokemonDetails.getName());
         pokemonListItem.setImageurl(pokemonDetails.getImageUrl());
+        pokemonListItem.setUrl("localhost:8080/pokemon?names=" + pokemonDetails.getName());
         return pokemonListItem;
 
 
