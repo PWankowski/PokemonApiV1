@@ -4,6 +4,7 @@ import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetails;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
 import com.project.PokemonApplicationV1.pokemonlist.Pokemon;
+import com.project.PokemonApplicationV1.pokemonlist.PokemonListItem;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,11 @@ public class PokemonController {
 
 
     @GetMapping("/list")
-    public List<Pokemon> getPokemonList() {
-
-        return pokemonListService.getPokemonList();
+    public List<PokemonListItem> getPokemonItemList() {
+        return pokemonListService.getPokemonListItems();
     }
+
+
 
     @GetMapping
     public List<PokemonDetails> getPokemonDetails(@RequestParam String names) {

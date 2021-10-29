@@ -12,6 +12,7 @@ public class Pokemon {
     private String name;
     private String url;
 
+
     public Pokemon() {
     }
 
@@ -44,4 +45,6 @@ public class Pokemon {
     public void setUrl(String url) {
         this.url = url;
     }
+
+
 }
