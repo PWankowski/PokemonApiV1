@@ -41,14 +41,18 @@ public class PokemonDetailsService {
 
     public List<PokemonDetails> getPokemonDetailsList(String pokemonNameList){
 
-        List<PokemonDetails> pokemonDetailsList;
+
         String[] pokemonNames = pokemonNameList.split(",");
 
-        pokemonDetailsList = Arrays.stream(pokemonNames).map(name -> getPokemonDetails(name))
+        return   Arrays.stream(pokemonNames).map(name -> {
+            try {
+                return getPokemonDetails(name);
+            }catch (NoPokemonFoundException npf) {
+                return PokemonDetails.EMPTY;
+            }
+        })
+                .filter(pokemonDetails -> pokemonDetails != PokemonDetails.EMPTY)
                 .collect(Collectors.toList());
-
-
-        return pokemonDetailsList;
 
     }
 
