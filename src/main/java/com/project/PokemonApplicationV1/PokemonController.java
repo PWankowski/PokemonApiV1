@@ -3,7 +3,6 @@ package com.project.PokemonApplicationV1;
 import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetails;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
-import com.project.PokemonApplicationV1.pokemonlist.Pokemon;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListItem;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/pokemon")
