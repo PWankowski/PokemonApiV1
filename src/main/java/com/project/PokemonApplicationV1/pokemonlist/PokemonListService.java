@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PokemonListService {
+    private static final String ENDPOINT_URL = "https://pokemonapplication-v1.herokuapp.com/pokemon/list?limit=%d&offset=%d";
 
     private final PokemonListNetworkRepository pokemonListNetworkRepository;
     private final PokemonRepository pokemonRepository;
@@ -57,22 +58,34 @@ public class PokemonListService {
         return pokemons;
     }
 
-    public List<PokemonListItem> getPokemonListItems(int offset, int limit) {
-
-        final List<PokemonListItem> pokemonListItems = new ArrayList<>();
+    public PokemonListEnvelop getPokemonListItems(int offset, int limit) {
 
         Pageable pageable = PageRequest.of(offset,limit);
 
        List<Pokemon> pokemonList = pokemonRepository.findAll(pageable).getContent();
-      pokemonListItems.addAll(pokemonList.stream()
+        List<PokemonListItem> pokemonListItems = pokemonList.stream()
               .map(pokemon ->
                       pokemonDetailsService.getPokemonDetails(pokemon.getName()))
               .map(pokemonDetails -> {
                return   pokemonListItemDto.toEntity(pokemonDetails);
-                      }).collect(Collectors.toList()));
+                      }).collect(Collectors.toList());
+
+        long count = pokemonRepository.count();
+        boolean hasPrev = offset !=0;
+        boolean hasNext = (count - ((offset*limit)+limit)) > 0;
+        String next = null;
+        String prev = null;
+
+        if(hasPrev){
+            prev = String.format(ENDPOINT_URL, limit, offset -1);
+        }
+        if(hasNext){
+            next = String.format(ENDPOINT_URL, limit, offset +1);
+        }
+
+        return new PokemonListEnvelop(count,next,prev,pokemonListItems);
 
 
-      return  pokemonListItems;
 
 
 

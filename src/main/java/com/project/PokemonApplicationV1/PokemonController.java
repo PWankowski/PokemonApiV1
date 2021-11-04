@@ -3,6 +3,7 @@ package com.project.PokemonApplicationV1;
 import com.project.PokemonApplicationV1.pokemondetails.NoPokemonFoundException;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetails;
 import com.project.PokemonApplicationV1.pokemondetails.PokemonDetailsService;
+import com.project.PokemonApplicationV1.pokemonlist.PokemonListEnvelop;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListItem;
 import com.project.PokemonApplicationV1.pokemonlist.PokemonListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class PokemonController {
 
 
     @GetMapping("/list")
-    public List<PokemonListItem> getPokemonItemList(@RequestParam(defaultValue = "0") int offset,
-                                                    @RequestParam(defaultValue = "20") int limit) {
+    public PokemonListEnvelop getPokemonItemList(@RequestParam(defaultValue = "0") int offset,
+                                                 @RequestParam(defaultValue = "20") int limit) {
         return pokemonListService.getPokemonListItems(offset,limit);
     }
 
