@@ -4,5 +4,6 @@ Deployment na heroku: https://pokemonapplication-v1.herokuapp.com/
 Dane przechowywane sa w bazie danych H2: http://localhost:8080/h2-console
 username=pokemon_user
 password=pokemon
+Część frontendowa w react, wyświetlanie listy pokemonow wraz z paginacją : https://pokemonapifrontendv1.herokuapp.com/
 
 
