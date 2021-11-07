@@ -8,7 +8,7 @@ Część frontendowa w react, wyświetlanie listy pokemonow wraz z paginacją : 
 
 English version below:
 
-Application to communication with external service from which is getting  information about pokemons from database, after filtering data, user receive answer about pokemons
+Application to communicate with external service from which is getting  information about pokemons from database, after filtering data, user receive answer about pokemons
 Externall service: https://pokeapi.co/api/v2/pokemon?limit=100&offset=0
 Deployment on heroku: https://pokemonapplication-v1.herokuapp.com/
 Data  saving in data base  H2: http://localhost:8080/h2-console
