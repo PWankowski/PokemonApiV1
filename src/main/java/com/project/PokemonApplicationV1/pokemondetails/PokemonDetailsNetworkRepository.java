@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 @Repository
-class PokemonDetailsNetworkRepository {
+public class PokemonDetailsNetworkRepository {
 
     private final static String ENDPOINT = "pokemon/%d/";
     private final RestTemplate restTemplate;
@@ -16,7 +16,7 @@ class PokemonDetailsNetworkRepository {
         this.endpointUrl = baseUrl + ENDPOINT;
     }
 
-    PokemonDetailsResponse fetchPokemonDetails(int pokemonId) {
+    public PokemonDetailsResponse fetchPokemonDetails(int pokemonId) {
         String url = String.format(endpointUrl, pokemonId);
         return restTemplate.getForObject(url, PokemonDetailsResponse.class);
     }

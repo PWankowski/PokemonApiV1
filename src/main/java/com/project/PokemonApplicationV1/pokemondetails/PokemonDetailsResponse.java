@@ -62,7 +62,7 @@ public class PokemonDetailsResponse {
     }
 }
 
-class Abilities {
+ class Abilities {
 
     private AbilityItem ability;
 
@@ -76,7 +76,7 @@ class Abilities {
     }
 }
 
-class AbilityItem {
+ class AbilityItem {
 
     private String name;
 
@@ -89,7 +89,7 @@ class AbilityItem {
     }
 }
 
-class Sprites {
+ class Sprites {
     @JsonProperty("front_default")
     String img;
 
@@ -102,7 +102,7 @@ class Sprites {
     }
 }
 
-class Types {
+ class Types {
 
     private Type type;
 
@@ -115,7 +115,7 @@ class Types {
     }
 }
 
-class Type {
+ class Type {
 
     private String name;
 
